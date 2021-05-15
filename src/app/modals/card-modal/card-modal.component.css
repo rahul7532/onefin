@@ -1,0 +1,9 @@
+::ng-deep.tooltip-colored {
+    background: #3f51b5;
+  }
+  .mr-8{
+      margin-right: 8px;
+  }
+  ::ng-deep.mat-form-field-infix{
+      width: 250px;
+  }

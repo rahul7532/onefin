@@ -1,0 +1,128 @@
+  .container {
+    margin-block-end: 4%;
+  }
+  
+  ::ng-deep.tooltip-colored {
+    background: #3f51b5;
+  }
+  .colored-icon {
+    color: #3f51b5;
+  }
+  
+  .tempBtn {
+    background-color: #3f51b5 !important;
+  }
+  .spinner-template {
+    height: 50vw;
+  }
+  
+  .title-center {
+    margin: 0 auto;
+  }
+  .mat-spin {
+    margin: 20% auto;
+  }
+  .loggin-in-text {
+    position: relative;
+    top: -200px;
+    left: 46%;
+    font-family: monospace;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .form-group {
+    display: block;
+    padding-block-start: 5%;
+  }
+  .mat-card {
+    margin-top: 10vh;
+  }
+  
+  mat-card-title {
+    align-content: center;
+  }
+  
+  .userIcon {
+    font-size: 16px;
+  }
+  
+  .passwordIcon {
+    font-size: 23px;
+  }
+  
+  .login-card {
+    padding: 3%;
+    border-radius: 12px;
+  
+    -webkit-box-shadow: 13px 11px 35px -16px rgba(115, 113, 115, 1);
+    -moz-box-shadow: 13px 11px 35px -16px rgba(115, 113, 115, 1);
+    box-shadow: 13px 11px 35px -16px rgba(115, 113, 115, 1);
+  }
+  
+  .myCard {
+    margin-block-start: 18%;
+  }
+  
+  .btn {
+    width: 100%;
+    border-radius: 12px;
+  }
+  
+  .mybtn {
+    padding-block-start: 2rem;
+  }
+  
+  .images {
+    position: relative;
+    margin-top: 12%;
+    background-image: url('~undraw_home_cinema_l7yl.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .logo {
+    border-radius: 50%;
+    margin-top: 7%;
+    margin-bottom: 1rem;
+    background-image: url('~user.png');
+    height: 95px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+  }
+  ::ng-deep body {
+    background: url('~wave.svg');
+    background-position: center bottom;
+    background-attachment: fixed;
+    width: 100%;
+    background-repeat: no-repeat;
+  }
+  ::ng-deep .mat-drawer-container {
+    background: transparent;
+  }
+  .logo-text {
+    margin-top: 5%;
+    font-size: 32px;
+    color: #244972;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  .logo-text p {
+    text-align: center;
+  }
+  
+  .forgot {
+    text-align: center;
+  }
+
+  /*   
+  // mat-select {
+  //   margin: 0 0 0 20px;
+  //   width: 40px;
+  //   font-size: 14px;
+  // } */
+  

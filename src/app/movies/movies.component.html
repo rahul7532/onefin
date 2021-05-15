@@ -1,0 +1,200 @@
+<div class="mat-app-background darkMode" [ngClass]="{'dark-theme-mode':isDarkTheme}">
+
+  <div *ngIf="loaderService.isLoading | async" class="loader-container">
+    <mat-spinner style="top:50%;left:50%"></mat-spinner>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">Movies </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <button *ngIf="loginService.loggedIn()" mat-raised-button color="primary" (click)="this.fetchData()">
+            Refresh
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </li>
+        <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/special" routerLinkActive="active">Members</a>
+      </li> -->
+      </ul>
+      <ul class="navbar-nav">
+
+
+
+        <a class="nav-link" *ngIf="!loginService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+        <!-- <a class="nav-link" *ngIf="!loginService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a> -->
+
+        <a class="navbar-brand" style="cursor: pointer" *ngIf="loginService.loggedIn()"
+          (click)="loginService.logoutUser()">Logout
+          <!-- <mat-icon style="margin-top: 5px;" matTooltip="Click To Log Out" class="profile-icon">
+            exit_to_app
+          </mat-icon> -->
+        </a>
+
+
+        <!-- dark theme -->
+        <!-- <span style="flex: auto;"></span>
+<mat-slide-toggle class="navbar-brand"  >
+Dark theme
+</mat-slide-toggle> -->
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- search bar  -->
+  <section>
+
+
+    <div style="margin: 50px;">
+
+      <div class="container" style="text-align:center">
+        <div class="row">
+          <div class="col-12 text-center">
+            <input type="text" #movieSearchInput class="form-control" placeholder="Type any movie name" />
+
+          </div>
+        </div>
+        <div class="row" *ngIf="isSearching">
+          <div class="col-12 text-center">
+
+            <h4>Searching ... </h4>
+
+          </div>
+        </div>
+        <div class="row">
+          <ng-container *ngIf="apiResponse['Response'] == 'False'; else elseTemplate">
+
+            <div class="col-12 text-center">
+              <div class="alert alert-danger" role="alert">
+                {{apiResponse['Error']}}
+
+              </div>
+            </div>
+
+          </ng-container>
+          <ng-template #elseTemplate>
+
+
+            <div class="col-3" *ngFor="let movie of apiResponse['res']">
+
+              <div class="card" style="margin:5px;">
+                <img
+                src="https://ui-avatars.com/api/?rounded=true&length=1&name=M+J&size=120&bold=true&background=212529&color=fff"
+                alt="image" />
+                <div class="card-body">
+                  <h5 class="card-title">{{movie['title']}}</h5>
+                  <p class="card-text">Year: {{movie?.description.length > 20
+                    ? (movie.description | slice: 0:30) + "..."
+                    : movie.description}}</p>
+                  <div class="card-footer text-muted">
+                    Genres: {{ movie['genres'] || "NA" }}
+                  </div> 
+                </div>
+              </div>
+            </div>
+
+          </ng-template>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+
+
+
+  <!-- 
+<div fxLayout="column" fxLayoutAlign="start center">
+  <mat-form-field fxLayoutAlign="start center" style="margin-top: 2%">
+    <mat-placeholder>
+      <mat-icon> search </mat-icon>
+      <span>Search movie title here...</span>
+    </mat-placeholder>
+    <input matInput  (keyup)="onSearchChange($event.target.value)" /> -->
+  <!-- <ul *ngIf="results$">
+      <li *ngFor="let result of results$ | slice:0:9">
+        <a href="{{ result.latest}}" target="_blank">
+          {{ result.name}}
+        </a>
+      </li>
+    </ul> -->
+
+
+
+
+  <!-- 
+  </mat-form-field>
+</div> -->
+
+  <!-- <input 
+  type="number" 
+  placeholder="enter user id..."
+  (input)="searchPosts($event.target.value!=null)"
+> -->
+
+  <!-- 
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="searchbar">
+      <input (input)="onSearchChange($event.target.value)" class="search_input" type="text" name="" placeholder="Search...">
+      <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+      <ul *ngIf="results$">
+        <li *ngFor="let result of results$ | slice:0:9">
+          <a href="{{ result.latest }}" target="_blank">
+            {{ result.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> -->
+
+
+  <div class="row mt-5" [dataSource]="dataSource?.results" style="overflow-x: hidden">
+    <div class="col-md-3 mb-3" *ngFor="let movie of dataSource?.results">
+      <div class="card text-center" (click)="statusDialog(movie.title, movie.description, movie.genres)">
+        <div class="card-body">
+          <img
+            src="https://ui-avatars.com/api/?rounded=true&length=1&name=M+J&size=80&bold=true&background=212529&color=fff"
+            alt="image" />
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">
+            {{
+            movie?.description.length > 20
+            ? (movie.description | slice: 0:30) + "..."
+            : movie.description
+            }}
+
+            <!-- {{movie.description | slice: 0: 30}} -->
+          </p>
+          <!-- <a href="#" class="btn btn-primary">Buy Tickets</a> -->
+        </div>
+        <div class="card-footer text-muted">
+          Genres: {{ movie.genres || "NA" }}
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <mat-paginator [length]="dataSource?.count" [pageSize]="dataSource?.results?.length" [pageSizeOptions]="[10]"
+    (page)="pageEvent = $event; onPaginateChange($event)" showFirstLastButton>
+  </mat-paginator>
+
+</div>

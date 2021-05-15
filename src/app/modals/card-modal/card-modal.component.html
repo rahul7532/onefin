@@ -1,0 +1,16 @@
+<h1 mat-dialog-title class="text-center">Movie Details</h1>
+<div mat-dialog-content>
+  <div class="text-center">
+    <div class="card-body">
+      <img
+        src="https://ui-avatars.com/api/?rounded=true&length=1&name=M+J&size=80&bold=true&background=212529&color=fff"
+        alt="image"
+      />
+      <h5 class="card-title">{{ fromPage }}</h5>
+      <p class="card-text">
+        {{ description }}
+      </p>
+    </div>
+    <div class="card-footer text-muted">Genres: {{ genres || "NA" }}</div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.loader-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: black;
+  z-index: 99;
+  opacity: 0.8;
+}
